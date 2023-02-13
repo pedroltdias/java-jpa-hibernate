@@ -9,15 +9,14 @@ import br.com.alura.loja.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class PerformanceConsultas {
+public class TesteCriteria {
     public static void main(String[] args) {
         popularBD();
         EntityManager em = JPAUtil.getEntityManager();
-        PedidoDAO pedidoDAO = new PedidoDAO(em);
-        Pedido pedido = pedidoDAO.buscarPedidoComCliente(1l);
-        em.close();
-        System.out.println(pedido.getCliente().getNome());
+        ProdutoDAO produtoDAO = new ProdutoDAO(em);
+        produtoDAO.buscarPorParametrosCriteria("PS5", new BigDecimal("5000"), LocalDate.now());
     }
 
     private static void popularBD() {
